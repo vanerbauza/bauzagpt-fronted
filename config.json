@@ -1,0 +1,13 @@
+{
+  "firebase": {
+    "apiKey": "AIzaSyD3a7cv735RQPYsXMdn4KWQ-NDugL7WyfI",
+    "authDomain": "studio-6473341422-75630.firebaseapp.com",
+    "projectId": "studio-6473341422-75630"
+  },
+  "apiBase": "http://localhost:8080",
+  "payments": {
+    "createOrder": "/public/orders",
+    "getOrders": "/client/orders",
+    "createCheckoutSession": "/api/create-checkout-session"
+  }
+}
