@@ -1,0 +1,18 @@
+<!doctype html><meta charset="utf-8"><title>Pedido</title>
+<h1>Tu pedido</h1>
+<input id="orderId" placeholder="Order ID">
+<button id="ver">Ver estado</button>
+<p id="status">—</p>
+<a id="desc" style="display:none">Descargar</a>
+<script src="/load-config.js"></script>
+<script>
+  const API = () => (window.BAUZA.API_BASE||"").replace(/\/+$/,""); 
+  const headers = {"x-user-id":"demo-user-123"};
+  async function poll(id){
+    const r=await fetch(`${API()}/api/orders/${id}`,{headers});
+    const j=await r.json(); status.textContent=`Estado: ${j.status}`;
+    if(j.status==="ready"){ desc.style.display="inline"; desc.href=`${API()}/api/orders/${id}/download`; }
+    else setTimeout(()=>poll(id),5000);
+  }
+  ver.onclick=()=>{ const id=orderId.value.trim(); if(!id) return alert("Falta Order ID"); status.textContent="Consultando…"; poll(id); };
+</script>
