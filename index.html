@@ -1,0 +1,12 @@
+<button id="buyPro">Comprar PRO ($20 MXN)</button>
+<script src="/load-config.js"></script>
+<script>
+  const API = () => (window.BAUZA.API_BASE||"").replace(/\/+$/,"");
+  const headers = {"Content-Type":"application/json","x-user-id":"demo-user-123"};
+  buyPro.onclick = async ()=>{
+    const r = await fetch(`${API()}/api/orders`, {method:"POST",headers,body:JSON.stringify({plan:"PRO"})});
+    const j = await r.json(); if(!r.ok) return alert(j.error||"Error");
+    alert(`Orden creada: ${j.orderId}`);
+    location.href = "/cuenta_ok.html";
+  };
+</script>
